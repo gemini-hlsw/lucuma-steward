@@ -1,0 +1,29 @@
+name: Lucuma Steward
+
+on:
+  schedule:
+    - cron: '0 */1 * * *'
+  workflow_dispatch:
+
+jobs:
+  steward:
+    runs-on: ubuntu-latest
+    name: Scala Steward
+    steps:
+      - uses: actions/checkout@v2
+          
+      - name: Generate token
+        id: generate-token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: 206840
+          private_key: ${{ secrets.LUCUMA_STEWARD_PRIVATE_KEY }}
+
+      - name: Launch Scala Steward
+        uses: scala-steward-org/scala-steward-action@v2
+        with:
+          github-token: ${{ steps.generate-token.outputs.token }}
+          author-email: 206840+lucuma-steward[bot]@users.noreply.github.com
+          author-name: lucuma-steward[bot]
+          github-app-id: 206840
+          github-app-key: ${{ secrets.LUCUMA_STEWARD_PRIVATE_KEY }}
