@@ -24,7 +24,7 @@ jobs:
         with:
           scala-steward-version: 0.14.0-157-c99d9d2c-SNAPSHOT
           github-token: ${{ steps.generate-token.outputs.token }}
-          author-email: 206840+lucuma-steward[bot]@users.noreply.github.com
+          author-email: 106720676+lucuma-steward[bot]@users.noreply.github.com
           author-name: lucuma-steward[bot]
           github-app-id: 206840
           github-app-key: ${{ secrets.LUCUMA_STEWARD_PRIVATE_KEY }}
