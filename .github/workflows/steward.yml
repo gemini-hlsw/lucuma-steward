@@ -22,6 +22,7 @@ jobs:
       - name: Launch Scala Steward
         uses: scala-steward-org/scala-steward-action@v2
         with:
+          scala-steward-version: 0.14.0-157-c99d9d2c-SNAPSHOT
           github-token: ${{ steps.generate-token.outputs.token }}
           author-email: 206840+lucuma-steward[bot]@users.noreply.github.com
           author-name: lucuma-steward[bot]
