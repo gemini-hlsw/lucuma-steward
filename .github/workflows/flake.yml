@@ -1,0 +1,64 @@
+name: Nimble Agar Flake Steward
+
+on:
+  schedule:
+    - cron: '45 7 * * 2'
+  workflow_dispatch:
+
+jobs:
+  lockfile:
+    strategy:
+      matrix:
+        repo:
+          - gemini-hlsw/gemini-locales
+          - gemini-hlsw/gemini-locales
+          - gemini-hlsw/gmp
+          - gemini-hlsw/itc-server
+          - gemini-hlsw/lucuma-catalog
+          - gemini-hlsw/lucuma-core
+          - gemini-hlsw/lucuma-graphql-routes
+          - gemini-hlsw/lucuma-itc
+          - gemini-hlsw/lucuma-react
+          - gemini-hlsw/lucuma-schemas
+          - gemini-hlsw/lucuma-schemas
+          - gemini-hlsw/lucuma-seed
+          - gemini-hlsw/lucuma-ui
+          - gemini-hlsw/lucuma-ui
+          - gemini-hlsw/observe
+          - gemini-hlsw/ocs
+          - gemini-hlsw/react-aladin
+          - gemini-hlsw/seqexec
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ matrix.repo }}
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v17
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate token
+        id: generate-token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: 206840
+          private_key: ${{ secrets.LUCUMA_STEWARD_PRIVATE_KEY }}
+
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@36f1c474807d62363305dcec6fd9ea9ed642c114
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          branch: update/flake-lock-${{ github.run_number }}
+          git-author-email: 106720676+lucuma-steward[bot]@users.noreply.github.com
+          gitauthor-name: lucuma-steward[bot]
+          git-committer-email: 106720676+lucuma-steward[bot]@users.noreply.github.com
+          git-committer-name: lucuma-steward[bot]
+          pr-body: |
+            Automated changes by the [update-flake-lock](https://github.com/DeterminateSystems/update-flake-lock) GitHub Action.
+
+            ```
+            {{ env.GIT_COMMIT_MESSAGE }}
+            ```
