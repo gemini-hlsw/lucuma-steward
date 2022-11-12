@@ -11,7 +11,6 @@ jobs:
       matrix:
         repo:
           - gemini-hlsw/gemini-locales
-          - gemini-hlsw/gemini-locales
           - gemini-hlsw/gmp
           - gemini-hlsw/itc-server
           - gemini-hlsw/lucuma-catalog
@@ -20,9 +19,7 @@ jobs:
           - gemini-hlsw/lucuma-itc
           - gemini-hlsw/lucuma-react
           - gemini-hlsw/lucuma-schemas
-          - gemini-hlsw/lucuma-schemas
           - gemini-hlsw/lucuma-seed
-          - gemini-hlsw/lucuma-ui
           - gemini-hlsw/lucuma-ui
           - gemini-hlsw/observe
           - gemini-hlsw/ocs
