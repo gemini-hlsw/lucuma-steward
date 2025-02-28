@@ -18,7 +18,7 @@ jobs:
         id: generate-token
         uses: tibdex/github-app-token@v2
         with:
-          app_id: 206840
+          app_id: ${{ vars.APP_ID }}
           private_key: ${{ secrets.LUCUMA_STEWARD_PRIVATE_KEY }}
 
       - name: Launch Scala Steward
@@ -27,5 +27,6 @@ jobs:
           github-token: ${{ steps.generate-token.outputs.token }}
           author-email: 106720676+lucuma-steward[bot]@users.noreply.github.com
           author-name: lucuma-steward[bot]
-          github-app-id: 206840
+          github-app-id: ${{ vars.APP_ID}}
+          github-app-installation-id: ${{ vars.APP_INSTALLATION_ID}}
           github-app-key: ${{ secrets.LUCUMA_STEWARD_PRIVATE_KEY }}
