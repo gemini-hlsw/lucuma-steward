@@ -13,15 +13,13 @@ jobs:
           - gemini-hlsw/gemini-locales
           - gemini-hlsw/gmp
           - gemini-hlsw/itc-server
+          - gemini-hlsw/lucuma-apps
           - gemini-hlsw/lucuma-catalog
           - gemini-hlsw/lucuma-core
           - gemini-hlsw/lucuma-graphql-routes
-          - gemini-hlsw/lucuma-itc
           - gemini-hlsw/lucuma-react
-          - gemini-hlsw/lucuma-schemas
           - gemini-hlsw/lucuma-seed
           - gemini-hlsw/lucuma-ui
-          - gemini-hlsw/observe
           - gemini-hlsw/ocs
           - gemini-hlsw/react-aladin
           - gemini-hlsw/seqexec
