@@ -5,6 +5,10 @@ on:
     - cron: '45 7 * * 2'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   lockfile:
     strategy:
@@ -37,7 +41,7 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@v2
         with:
-          app-id: ${{ vars.APP_ID}}
+          app-id: ${{ vars.LUCUMA_STEWARD_APP_ID }}
           private-key: ${{ secrets.WORKFLOW_GH_TOKEN }}
 
       - name: Update flake.lock
