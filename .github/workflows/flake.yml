@@ -19,7 +19,6 @@ jobs:
           - gemini-hlsw/lucuma-graphql-routes
           - gemini-hlsw/lucuma-react
           - gemini-hlsw/lucuma-seed
-          - gemini-hlsw/lucuma-ui
           - gemini-hlsw/ocs
           - gemini-hlsw/react-aladin
           - gemini-hlsw/seqexec
@@ -32,15 +31,14 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v30
         with:
-          extra_nix_config: |
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate token
         id: generate-token
         uses: actions/create-github-app-token@v2
         with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.LUCUMA_STEWARD_PRIVATE_KEY }}
+          app-id: ${{ vars.APP_ID}}
+          private-key: ${{ secrets.WORKFLOW_GH_TOKEN }}
 
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v24
