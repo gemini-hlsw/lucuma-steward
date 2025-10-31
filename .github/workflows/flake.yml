@@ -5,10 +5,6 @@ on:
     - cron: '45 7 * * 2'
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   lockfile:
     strategy:
@@ -18,13 +14,10 @@ jobs:
           - gemini-hlsw/gmp
           - gemini-hlsw/itc-server
           - gemini-hlsw/lucuma-apps
-          - gemini-hlsw/lucuma-catalog
           - gemini-hlsw/lucuma-core
           - gemini-hlsw/lucuma-graphql-routes
           - gemini-hlsw/lucuma-react
-          - gemini-hlsw/lucuma-seed
           - gemini-hlsw/ocs
-          - gemini-hlsw/react-aladin
           - gemini-hlsw/seqexec
     runs-on: ubuntu-latest
     steps:
