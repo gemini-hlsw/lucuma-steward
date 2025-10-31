@@ -10,20 +10,20 @@ jobs:
     strategy:
       matrix:
         repo:
-          - gemini-hlsw/gemini-locales
-          - gemini-hlsw/gmp
-          - gemini-hlsw/itc-server
-          - gemini-hlsw/lucuma-apps
-          - gemini-hlsw/lucuma-core
-          - gemini-hlsw/lucuma-graphql-routes
-          - gemini-hlsw/lucuma-react
-          - gemini-hlsw/ocs
-          - gemini-hlsw/seqexec
+          - gemini-locales
+          - gmp
+          - itc-server
+          - lucuma-apps
+          - lucuma-core
+          - lucuma-graphql-routes
+          - lucuma-react
+          - ocs
+          - seqexec
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
         with:
-          repository: ${{ matrix.repo }}
+          repository: ${{ github.repository_owner }}/${{ matrix.repo }}
 
       - name: Install Nix
         uses: cachix/install-nix-action@v30
