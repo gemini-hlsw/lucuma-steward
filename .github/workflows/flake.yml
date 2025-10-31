@@ -27,8 +27,6 @@ jobs:
         with:
           app-id: ${{ vars.LUCUMA_STEWARD_APP_ID }}
           private-key: ${{ secrets.WORKFLOW_GH_TOKEN }}
-          owner: ${{ github.repository_owner}}
-          repositories: ${{ matrix.repo }}
 
       - uses: actions/checkout@v5
         with:
