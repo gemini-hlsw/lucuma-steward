@@ -2,7 +2,7 @@ name: Lucuma Flake Steward
 
 on:
   schedule:
-    - cron: '45 7 * * 2'
+    - cron: "45 7 * * 2"
   workflow_dispatch:
 
 jobs:
@@ -21,15 +21,6 @@ jobs:
           - seqexec
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-        with:
-          repository: ${{ github.repository_owner }}/${{ matrix.repo }}
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v30
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Generate token
         id: generate-token
         uses: actions/create-github-app-token@v2
@@ -38,6 +29,17 @@ jobs:
           private-key: ${{ secrets.WORKFLOW_GH_TOKEN }}
           owner: ${{ github.repository_owner}}
           repositories: ${{ matrix.repo }}
+
+      - uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository_owner }}/${{ matrix.repo }}
+          token: ${{ steps.generate-token.outputs.token }}
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          github_access_token: ${{ steps.generate-token.outputs.token }}
 
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v24
