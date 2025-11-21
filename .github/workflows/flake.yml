@@ -30,7 +30,7 @@ jobs:
           owner: ${{ github.repository_owner}}
           repositories: ${{ matrix.repo }}
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/${{ matrix.repo }}
           token: ${{ steps.generate-token.outputs.token }}
