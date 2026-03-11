@@ -10,12 +10,10 @@ jobs:
     strategy:
       matrix:
         repo:
-          - gemini-locales
           - gmp
-          - itc-server
           - lucuma-apps
           - lucuma-core
-          - lucuma-graphql-routes
+          - lucuma-odb
           - lucuma-react
           - ocs
           - seqexec
